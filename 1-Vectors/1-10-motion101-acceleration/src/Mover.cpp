@@ -8,21 +8,31 @@ Mover::Mover() {
 }
 
 void Mover::update() {
-  //std::cout << ofGetMouseX() << ", " << ofGetMouseY() << std::endl;
   ofVec2f mouse = glm::vec2(ofGetMouseX(), ofGetMouseY());
-  this->_acceleration = glm::normalize(glm::vec2(_position - mouse));
-  // this->_acceleration *= 0.2;
-  // this->_velocity += _acceleration;
-  // this->_velocity = glm::max(_velocity, _topSpeed);
-  // this->_position += _velocity;
-  // this->_position = mouse;
+  this->_acceleration = glm::normalize(glm::vec2(mouse - _position));
+  this->_acceleration *= 0.2;
+  this->_velocity += _acceleration;
+  std::cout << this->_velocity << std::endl;
+  this->_velocity.x = glm::clamp(this->_velocity.x,
+                                 -this->_topSpeed,
+                                  this->_topSpeed);
+  this->_velocity.y = glm::clamp(this->_velocity.y,
+                                 -this->_topSpeed,
+                                  this->_topSpeed);
+  this->_position += _velocity;
 }
 
 void Mover::display() {
-  ofSetColor(255, 128, 42);
+  ofVec2f mouse = glm::vec2(ofGetMouseX(), ofGetMouseY());
   ofFill();
+  // Line
+  ofSetColor(128, 128, 128);
+  ofSetLineWidth(1.0f);
+  ofDrawLine(this->_position, mouse);
+  // Mouse
+  ofSetColor(255, 0, 0);
+  ofDrawEllipse(mouse, 20, 20);
+  // Mover
+  ofSetColor(255, 255, 255);
   ofDrawEllipse(_position, 100, 100);
-  ofSetLineWidth(5.0f);
-  ofDrawLine(this->_position,
-             this->_position - this->_acceleration);
 }
