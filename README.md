@@ -2,7 +2,7 @@
 
 ### 1. Vectors
 
-<div float="left">
+<div>
   <div>
     <b>Motion 101 ‒ Acceleration</b>
     <img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="250"/>
