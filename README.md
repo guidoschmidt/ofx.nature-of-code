@@ -2,14 +2,9 @@
 
 ### 1. Vectors
 
-<div>
-<div style="width: 200px">
-<h4>Motion 101 ‒ Acceleration</h4>
-<img alt="Motion 101 ‒ Acceleration" src="./1-Vectors/1-10-motion101-acceleration/screenshot.png"/>
-</div>
+##### Motion 101 ‒ Acceleration
+![Motion 101 ‒
+Acceleration](1-Vectors/1-10-motion101-acceleration/screenshot.png)
 
-<div style="width: 200px">
-<h4>Motion 101 ‒ Acceleration</h4>
-<img alt="Motion 101 ‒ Acceleration Array" src="./1-Vectors/1-10-motion101-acceleration-array/screenshot.png"/>
-</div>
-</div>
+##### Motion 101 ‒ Acceleration Array
+![Motion 101 ‒ Acceleration Array](1-Vectors/1-10-motion101-acceleration-array/screenshot.png)
