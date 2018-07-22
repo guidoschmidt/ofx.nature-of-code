@@ -10,6 +10,7 @@ private:
   glm::vec2 _velocity;
   glm::vec2 _acceleration;
   float _topSpeed = 5.0f;
+  ofColor _color;
 public:
   Mover();
   void update();

@@ -1,10 +1,11 @@
 #include "Mover.hpp"
 
 Mover::Mover() {
-  _position = glm::vec2( ofGetWidth() / 2, ofGetHeight() / 2);
-  _velocity = glm::vec2(0, 0);
-  _acceleration = glm::vec2(0, 0);
-  _topSpeed = 2.0f;
+  this->_position = glm::vec2( ofGetWidth() / 2, ofGetHeight() / 2);
+  this->_velocity = glm::vec2(0, 0);
+  this->_acceleration = glm::vec2(0, 0);
+  this->_topSpeed = 2.0f;
+  this->_color = ofColor::fromHsb(ofRandom(0, 255), 200, 220);
 }
 
 void Mover::update() {
@@ -12,7 +13,6 @@ void Mover::update() {
   this->_acceleration = glm::normalize(glm::vec2(mouse - _position));
   this->_acceleration *= 0.2;
   this->_velocity += _acceleration;
-  std::cout << this->_velocity << std::endl;
   this->_velocity.x = glm::clamp(this->_velocity.x,
                                  -this->_topSpeed,
                                   this->_topSpeed);
@@ -33,6 +33,6 @@ void Mover::display() {
   ofSetColor(255, 0, 0);
   ofDrawEllipse(mouse, 20, 20);
   // Mover
-  ofSetColor(255, 255, 255);
+  ofSetColor(this->_color);
   ofDrawEllipse(_position, 100, 100);
 }
