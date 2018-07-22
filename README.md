@@ -2,5 +2,7 @@
 
 ### 1. Vectors
 
-<img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="250" float="left"/>
-<img src="1-Vectors/1-10-motion101-acceleration-array/screenshot.png" width="250" float="left"/>
+<div float="left">
+<img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="250" />
+<img src="1-Vectors/1-10-motion101-acceleration-array/screenshot.png" width="250" />
+</div>
