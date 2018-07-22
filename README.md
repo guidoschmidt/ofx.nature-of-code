@@ -2,8 +2,13 @@
 
 ### 1. Vectors
 
-
-A                               |  B
---------------------------------|---------------------------------------
-##### Motion 101 ‒ Acceleration | ##### Motion 101 ‒ Acceleration Array
-![Motion 101 ‒ Acceleration](1-Vectors/1-10-motion101-acceleration/screenshot.png) | ![Motion 101 ‒ Acceleration Array](1-Vectors/1-10-motion101-acceleration-array/screenshot.png)
+<div float="left">
+  <div>
+    <b>Motion 101 ‒ Acceleration</b>
+    <img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="250"/>
+  </div>
+  <div>
+    <b>Motion 101 ‒ Acceleration Array</b>
+    <img src="1-Vectors/1-10-motion101-acceleration-array/screenshot.png" width="250"/>
+  </div>
+</div>
