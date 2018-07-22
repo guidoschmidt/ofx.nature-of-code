@@ -18,6 +18,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  ofBackground(255);
   _mover->display();
 }
 

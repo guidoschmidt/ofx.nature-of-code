@@ -17,6 +17,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  ofBackground(255);
   for (Mover* mover : this->_movers) {
     mover->display();
   }
