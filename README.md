@@ -2,8 +2,8 @@
 
 ### 1. Vectors
 
-<div>
-  <div style="display: flex; flex-direction: column;">
+<div float="left">
+  <div>
     <b>Motion 101 ‒ Acceleration</b>
     <br>
     <img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="250"/>
