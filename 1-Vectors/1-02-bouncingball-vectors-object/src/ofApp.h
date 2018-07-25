@@ -1,8 +1,12 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Ball.hpp"
 
 class ofApp : public ofBaseApp{
+
+private:
+  Ball* _ball;
 
 	public:
 		void setup();
