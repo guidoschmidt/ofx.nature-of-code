@@ -5,76 +5,80 @@
 # ignore generated binaries
 # but not the data folder
 
-/bin/*
-!/bin/data/
+**/bin/*
+**/!/bin/data/
 
 # general
 
 [Bb]uild/
 [Oo]bj/
-*.o
+**/*.o
 [Dd]ebug*/
 [Rr]elease*/
-*.mode*
-*.app/
-*.pyc
-.svn/
-*.log
+**/*.mode*
+**/*.app/
+**/*.pyc
+**/.svn/
+**/*.log
 
 # IDE files which should
 # be ignored
 
 # XCode
-*.pbxuser
-*.perspective
-*.perspectivev3
-*.mode1v3
-*.mode2v3
+**/*.pbxuser
+**/*.perspective
+**/*.perspectivev3
+**/*.mode1v3
+**/*.mode2v3
 # XCode 4
-xcuserdata
-*.xcworkspace
+**/xcuserdata
+**/*.xcworkspace
 
 # Code::Blocks
-*.depend
-*.layout
+**/*.depend
+**/*.layout
 
 # Visual Studio
-*.sdf
-*.opensdf
-*.suo
-*.pdb
-*.ilk
-*.aps
-ipch/
+**/*.sln
+**/*.vcxproj*
+**/*.sdf
+**/*.opensdf
+**/*.suo
+**/*.pdb
+**/*.ilk
+**/*.aps
+**/ipch/
+**/*/.vs/
+**/icon.rc
 
 # Eclipse
-.metadata
-local.properties
-.externalToolBuilders
+**/.metadata
+**/local.properties
+**/.externalToolBuilders
 
 # operating system
 
 # Linux
-*~
+**/*~
 # KDE
-.directory
-.AppleDouble
+**/.directory
+**/.AppleDouble
 
 # OSX
-.DS_Store
-*.swp
-*~.nib
+**/.DS_Store
+**/*.swp
+**/*~.nib
 # Thumbnails
-._*
+**/._*
 
 # Windows
 # Image file caches
-Thumbs.db
+**/Thumbs.db
 # Folder config file
-Desktop.ini
+**/Desktop.ini
 
 # Android
-.csettings
+**/.csettings
 
 
 # End of https://www.gitignore.io/api/openframeworks
