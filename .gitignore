@@ -33,7 +33,7 @@
 # XCode 4
 **/xcuserdata
 **/*.xcworkspace
-**/*.xcodeproj/
+**/*.xcodeproj/**
 
 # Code::Blocks
 **/*.depend
