@@ -4,26 +4,32 @@
 void ofApp::setup(){
   ofSetBackgroundAuto(false);
   this->_attractor = new Attractor();
-  this->_mover = new Mover(ofRandom(20, 30),
-                           ofRandom(0, ofGetHeight()),
-                           ofRandom(0, ofGetHeight()));
+  for (unsigned int i = 0; i < MOVER_COUNT; i++) {
+    this->_movers[i] = new Mover(ofRandom(5, 10),
+                                 ofRandom(0, ofGetHeight()),
+                                 ofRandom(0, ofGetHeight()));
+  }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  this->_attractor->hover(ofGetMouseX(), ofGetMouseY());
   this->_attractor->drag();
-  glm::vec2 force = this->_attractor->attract(this->_mover);
-  this->_mover->applyForce(force);
-  this->_mover->update();
-  this->_mover->checkEdges();
+  this->_attractor->hover(ofGetMouseX(), ofGetMouseY());
+  for (auto mover : this->_movers) {
+    glm::vec2 force = this->_attractor->attract(mover);
+    mover->applyForce(force);
+    mover->update();
+    mover->checkEdges();
+  }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  ofBackground(255, 255, 255);
+  ofBackground(250, 250, 250);
   this->_attractor->display();
-  this->_mover->display();
+  for (auto mover : this->_movers) {
+    mover->display();
+  }
 }
 
 //--------------------------------------------------------------

@@ -4,10 +4,12 @@
 #include "Attractor.hpp"
 #include "Mover.hpp"
 
+const int MOVER_COUNT = 200;
+
 class ofApp : public ofBaseApp{
   private:
     Attractor* _attractor;
-    Mover* _mover;
+    Mover* _movers[MOVER_COUNT];
 
 	public:
 		void setup();
