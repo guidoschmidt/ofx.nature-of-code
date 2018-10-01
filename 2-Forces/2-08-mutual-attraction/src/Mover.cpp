@@ -1,15 +1,14 @@
 #include "Mover.hpp"
 
-const double G = 0.1;
+const double G = 0.72;
 
 Mover::Mover(float mass, float x, float y) {
   this->_mass = mass;
   this->_position = glm::vec2(x, y);
   this->_velocity = glm::vec2(0, 0);
   this->_acceleration = glm::vec2(0, 0);
-  this->_color = glm::vec3(ofRandom(100, 255),
-                           ofRandom(100, 255),
-                           ofRandom(100, 255));
+  int randomWhite = ofRandom(30, 230);
+  this->_color = glm::vec3(randomWhite, randomWhite, randomWhite);
 }
 
 void Mover::applyForce(glm::vec2 force) {
@@ -29,8 +28,8 @@ void Mover::display() {
   ofFill();
   ofDrawEllipse(this->_position.x,
                 this->_position.y,
-                this->_mass * 50,
-                this->_mass * 50);
+                this->_mass * 10,
+                this->_mass * 10);
 }
 
 glm::vec2 Mover::attract(Mover* mover) {

@@ -4,13 +4,12 @@
 #include "Mover.hpp"
 #include <vector>
 
-const int MOVER_COUNT = 50;
+const int MOVER_COUNT = 350;
 
 class ofApp : public ofBaseApp{
 
 private:
   Mover* _movers[MOVER_COUNT];
-  // ofMesh* _meshes[MOVER_COUNT];
   std::vector<ofMesh*> _meshes;
 
 	public:

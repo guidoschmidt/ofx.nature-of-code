@@ -4,18 +4,19 @@ ofPolyline* line = new ofPolyline();
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+  ofSetBackgroundAuto(false);
+  ofEnableAlphaBlending();
+  ofSetFrameRate(60);
   for (unsigned int i=0; i < MOVER_COUNT; i++) {
-    this->_movers[i] = new Mover(ofRandom(0.1, 0.2),
+    this->_movers[i] = new Mover(ofRandom(0.1, 2.0),
                                  ofRandom(0, ofGetWidth()),
                                  ofRandom(0, ofGetHeight()));
-    this->_meshes[i] = new ofMesh();
-    this->_meshes[i]->setMode(OF_PRIMITIVE_LINES);
   }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  unsigned int i = 0;
+  this->_meshes.clear();
   for (auto moverA : this->_movers) {
     for(auto moverB : this->_movers) {
       if (moverA != moverB) {
@@ -24,18 +25,18 @@ void ofApp::update(){
       }
       glm::vec2 fromTo = moverA->getPosition() - moverB->getPosition();
       float distance = glm::length(fromTo);
-      this->_meshes[i]->clearVertices();
-      this->_meshes[i]->clearColors();
-      if (distance <= 120.0) {
-        this->_meshes[i]->addVertex(ofPoint(moverA->getPosition().x,
-                                            moverA->getPosition().y));
-        this->_meshes[i]->addColor(moverA->getColor());
-        this->_meshes[i]->addVertex(ofPoint(moverB->getPosition().x,
+      if (distance <= 37) {
+        ofMesh* mesh = new ofMesh();
+        mesh->setMode(OF_PRIMITIVE_LINES);
+        mesh->addVertex(ofPoint(moverA->getPosition().x,
+                                moverA->getPosition().y));
+        mesh->addColor(moverA->getColor());
+        mesh->addVertex(ofPoint(moverB->getPosition().x,
                                             moverB->getPosition().y));
-        this->_meshes[i]->addColor(moverB->getColor());
+        mesh->addColor(moverB->getColor());
+        this->_meshes.push_back(mesh);
       }
     }
-    i++;
     moverA->update();
   }
 
@@ -43,7 +44,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  ofBackground(20);
+  ofSetColor(20, 20, 20, 240);
+  ofRect(0, 0, ofGetWidth(), ofGetHeight());
   for (auto moverA : this->_movers) {
     moverA->display();
   }
