@@ -19,7 +19,7 @@ void Mover::update() {
   this->_velocity += this->_acceleration;
   this->_position += this->_velocity;
 
-  this->_angularAcceleration = this->_acceleration.x / 10.0;
+  this->_angularAcceleration = this->_acceleration.x / 3.0;
   this->_angularVelocity += this->_angularAcceleration;
   this->_angularVelocity = glm::clamp(this->_angularVelocity, -0.1, 0.1);
   this->_angle += this->_angularVelocity;
@@ -27,14 +27,15 @@ void Mover::update() {
   this->_acceleration *= 0;
 }
 
-void Mover::display() {
-  ofSetColor(0, 0, 0);
-  ofFill();
+void Mover::display(double distance) {
+  distance = ofMap(distance, 0, 200, 0, 1, true);
   ofSetRectMode(OF_RECTMODE_CENTER);
   ofPushMatrix();
   ofTranslate(this->_position.x, this->_position.y);
   ofRotateDeg(this->_angle);
-  ofDrawRectangle(0, 0, this->_mass * 16.0, this->_mass * 16);
+  ofFill();
+  ofSetColor(100, 200, 255 * distance);
+  ofDrawRectangle(0, 0, this->_mass * 2, this->_mass * 30);
   ofPopMatrix();
 }
 

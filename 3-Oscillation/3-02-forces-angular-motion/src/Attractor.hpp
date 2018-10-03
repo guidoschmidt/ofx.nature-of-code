@@ -13,4 +13,6 @@ public:
   Attractor();
   glm::vec2 attract(Mover* mover);
   void display();
+
+  glm::vec2 getPosition();
 };

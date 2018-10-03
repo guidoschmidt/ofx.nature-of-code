@@ -21,9 +21,12 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+  ofBackground(12, 12, 12);
   this->_attractor->display();
   for (auto mover : this->_movers) {
-    mover->display();
+    glm::vec2 force = this->_attractor->getPosition() - mover->getPosition();
+    double distance = glm::length(force);
+    mover->display(distance);
   }
 }
 

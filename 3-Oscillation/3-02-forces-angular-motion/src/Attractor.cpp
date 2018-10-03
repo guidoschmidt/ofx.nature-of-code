@@ -19,8 +19,11 @@ glm::vec2 Attractor::attract(Mover *mover) {
 }
 
 void Attractor::display() {
-  ofSetColor(0);
-  ofSetLineWidth(2);
   ofFill();
+  ofSetColor(255, 0, 100);
   ofDrawEllipse(this->_position.x, this->_position.y, 48, 48);
+}
+
+glm::vec2 Attractor::getPosition() {
+  return this->_position;
 }

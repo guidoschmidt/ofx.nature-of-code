@@ -4,7 +4,7 @@
 #include "Mover.hpp"
 #include "ofMain.h"
 
-const int MOVER_COUNT = 100;
+const int MOVER_COUNT = 300;
 
 class ofApp : public ofBaseApp{
 
