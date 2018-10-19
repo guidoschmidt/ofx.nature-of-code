@@ -81,5 +81,7 @@
 # Android
 **/.csettings
 
+# CCLS
+.ccls-cache/
 
 # End of https://www.gitignore.io/api/openframeworks
