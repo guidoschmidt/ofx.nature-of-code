@@ -1,4 +1,5 @@
 #include "Mover.hpp"
+#include <math.h>
 
 Mover::Mover() {
   _position = glm::vec2(ofGetWidth() / 2, ofGetHeight() / 2);
@@ -14,20 +15,27 @@ void Mover::update() {
   glm::vec2 mouse = glm::vec2(ofGetMouseX(), ofGetMouseY());
   glm::vec2 direction = mouse - _position;
   direction = glm::normalize(direction);
-  // direction *= 0.5f;
+  direction *= 0.5f;
   _acceleration = direction;
   _velocity += _acceleration;
-  this->_velocity.x = glm::clamp(this->_velocity.x, -_topSpeed, _topSpeed);
-  this->_velocity.y = glm::clamp(this->_velocity.y, -_topSpeed, _topSpeed);
+  double magnitude = glm::length(_velocity);
+  if (magnitude >= _topSpeed) {
+    _velocity = glm::normalize(_velocity);
+    _velocity *= _topSpeed;
+  }
   _position += _velocity;
 }
 
 void Mover::display() {
-  ofSetColor(0, 0, 0);
+  glm::vec2 m = glm::vec2(ofGetMouseX(), ofGetMouseY());
+  glm::vec2 direction = m - _position;
+  const float angle = atan2(direction.y, direction.x);
+
+  ofSetColor(42, 42, 42);
   ofPushMatrix();
   ofSetRectMode(OF_RECTMODE_CENTER);
   ofTranslate(_position.x, _position.y);
-  //ofRotateDeg(theta);
+  ofRotateRad(angle);
   ofDrawRectangle(0, 0, 30, 10);
   ofPopMatrix();
 
