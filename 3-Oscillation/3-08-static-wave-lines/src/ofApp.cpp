@@ -9,6 +9,7 @@ void ofApp::setup(){
   ofSetFrameRate(30);
   ofNoFill();
   ofSetColor(0);
+  ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
@@ -18,7 +19,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  ofBackground(250);
   ofBeginShape();
+  angle = 0.0;
   for (unsigned int x = 0; x < ofGetWidth(); x += 5) {
     double y = ofMap(sin(angle), -1, 1, 0, ofGetHeight());
     ofVertex(x, y);
