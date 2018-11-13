@@ -1,8 +1,3 @@
 # Openframeworks ⇄ Nature Of Code
 
-### 1. Vectors
-
-<div float="left">
-<img src="1-Vectors/1-10-motion101-acceleration/screenshot.png" width="400" />
-<img src="1-Vectors/1-10-motion101-acceleration-array/screenshot.png" width="400" />
-</div>
+(partially) customized code samples of examples from Daniel Shiffman's [natureofcode.com](https://natureofcode.com/) written with [Openframeworks](https://openframeworks.cc/).
