@@ -3,7 +3,7 @@
 Confetti::Confetti(glm::vec2 position) : Particle(position)
 {
   _color = ofColor(0);
-  _color.setHsb(ofRandom(0, 255), 255, 240);
+  _color.setHsb(ofRandom(0, 255), 50, 240);
 }
 
 void Confetti::display()

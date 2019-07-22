@@ -19,7 +19,7 @@ void Particle::update() {
 }
 
 void Particle::display() {
-  ofSetColor(0, 0, 0, _lifespan);
+  ofSetColor(250, 250, 250, _lifespan);
   ofSetLineWidth(2);
   ofFill();
   ofDrawEllipse(_position.x, _position.y, 12, 12);
