@@ -12,6 +12,8 @@ protected:
   bool _overlap;
   float _highlight;
   float _radius;
+  ofColor _color;
+  ofColor _intersectionColor;
 
 public:
   Particle(glm::vec2 location);
@@ -24,4 +26,6 @@ public:
 
   inline glm::vec2 getPosition() { return _position; }
   inline float getRadius() { return _radius; }
+  inline void setColor(ofColor c) { _color = ofColor(c.r, c.g, c.b); }
+  inline void setIntersectionColor(ofColor c) { _intersectionColor = ofColor(c.r, c.g, c.b); }
 };

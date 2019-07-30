@@ -2,12 +2,14 @@
 
 Particle::Particle(glm::vec2 location) {
   _highlight = false;
-  _mass = 200.0f;
+  _mass = 20.0f;
   _position = location;
   _velocity = glm::vec2(ofRandom(-1, 1), ofRandom(-1, 0));
   _acceleration = glm::vec2(0, 0.005);
-  _lifespan = 300.0;
-  _radius = ofRandom(1.0, 30.0);
+  _lifespan = 600.0;
+  _radius = 10.0f;
+  _color = ofColor(255, 0, 0);
+  _intersectionColor = ofColor(0, 255, 0);
 }
 
 void Particle::run() {
@@ -24,15 +26,21 @@ void Particle::update() {
   _velocity += _acceleration;
   _position += _velocity;
   _lifespan -= 1.5;
+  _radius -= 0.05;
+  if (_radius <= 0) _lifespan = 0.0f;
 }
 
 void Particle::display() {
   ofSetLineWidth(2);
   ofFill();
   if (_highlight > 0.0f) {
-    ofSetColor(_highlight, 28, 25, _lifespan);
+    ofSetColor(_color.lerp(_intersectionColor, _highlight),
+               _lifespan);
   } else {
-    ofSetColor(253, 183, 110, _lifespan);
+    ofSetColor(_color.r,
+               _color.g,
+               _color.b,
+               _lifespan);
   }
   ofDrawEllipse(_position.x, _position.y, _radius, _radius);
 }
@@ -43,13 +51,12 @@ bool Particle::isDead() {
 }
 
 void Particle::intersects(std::vector<Particle*> particles) {
-  _highlight = 0.0f;
   for (auto* other : particles) {
     if (other != this) {
       float distance = glm::distance2(_position,
                                       other->getPosition());
       if (distance < _radius + other->getRadius()) {
-        _highlight = ofMap(distance, 0, _radius + other->getRadius(), 255.0f, 0.0f);
+        _highlight = ofMap(distance, 0, _radius + other->getRadius(), 0.0f, 1.0f);
       }
     }
   }

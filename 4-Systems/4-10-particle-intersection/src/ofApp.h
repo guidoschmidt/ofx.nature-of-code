@@ -1,10 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxDatGui.h"
 #include "ParticleSystem.hpp"
 
 class ofApp : public ofBaseApp{
 private:
+  ofxDatGuiColorPicker *_uiBackgroundPicker;
+  ofxDatGuiColorPicker *_uiParticlePicker;
+  ofxDatGuiColorPicker *_uiParticleHighlightPicker;
+
+  void onColorPickerBackground(ofxDatGuiColorPickerEvent e);
+  void onColorPickerParticle(ofxDatGuiColorPickerEvent e);
+  void onColorPickerParticleIntersecting(ofxDatGuiColorPickerEvent e);
+
   ParticleSystem *_particleSystem;
 
 public:
