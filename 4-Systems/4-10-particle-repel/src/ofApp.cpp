@@ -1,7 +1,8 @@
 #include "ofApp.h"
 
-
 ofColor backgroundColor; 
+ofColor particleIntersectionColor;
+ofColor particleColor;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -9,33 +10,9 @@ void ofApp::setup(){
   ofSetFrameRate(120);
 
   // Setup colors
-  backgroundColor = ofColor();
   backgroundColor.setHex(0xf2e3c9);
-  ofColor particleColor = ofColor();
   particleColor.setHex(0x7ecfc0);
-  ofColor particleIntersectionColor = ofColor();
   particleIntersectionColor.setHex(0xef4b4b);
-
-  // Setup UI
-  int x = 0;
-  int padding = 0;
-
-  _uiBackgroundPicker = new ofxDatGuiColorPicker("Background",
-                                                 backgroundColor);
-  _uiBackgroundPicker->onColorPickerEvent(this, &ofApp::onColorPickerBackground);
-  _uiBackgroundPicker->setPosition(x, 0);
-  x += _uiBackgroundPicker->getWidth() + padding;
-
-  _uiParticlePicker = new ofxDatGuiColorPicker("Particles/Color",
-                                               particleColor);
-  _uiParticlePicker->onColorPickerEvent(this, &ofApp::onColorPickerParticle);
-  _uiParticlePicker->setPosition(x, 0);
-  x += _uiParticlePicker->getWidth() + padding;
-
-  _uiParticleHighlightPicker = new ofxDatGuiColorPicker("Particles/Intersect",
-                                                        particleIntersectionColor);
-  _uiParticleHighlightPicker->onColorPickerEvent(this, &ofApp::onColorPickerParticleIntersecting);
-  _uiParticleHighlightPicker->setPosition(x, 0);
 
   // Setup particle system
   glm::vec2 origin = glm::vec2(ofGetWidth() / 2, ofGetHeight() / 2);
@@ -48,9 +25,6 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  _uiBackgroundPicker->update();
-  _uiParticlePicker->update();
-  _uiParticleHighlightPicker->update();
 }
 
 //--------------------------------------------------------------
@@ -63,10 +37,6 @@ void ofApp::draw(){
   }
   _particleSystem->run();
   _particleSystem->calculateIntersections();
-  // Draw UI
-  _uiBackgroundPicker->draw();
-  _uiParticlePicker->draw();
-  _uiParticleHighlightPicker->draw();
 }
 
 //--------------------------------------------------------------
@@ -122,23 +92,4 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-//--------------------------------------------------------------
-void ofApp::onColorPickerBackground(ofxDatGuiColorPickerEvent e)
-{
-  // std::cout << "Background Color" << std::endl;
-    ofSetBackgroundColor(e.color);
-}
-
-void ofApp::onColorPickerParticle(ofxDatGuiColorPickerEvent e)
-{
-  // std::cout << "Particle Color" << std::endl;
-  _particleSystem->setParticleColor(e.color);
-}
-
-void ofApp::onColorPickerParticleIntersecting(ofxDatGuiColorPickerEvent e)
-{
-  // std::cout << "Intersection Color" << std::endl;
-  _particleSystem->setParticleIntersectionColor(e.color);
 }
