@@ -5,12 +5,14 @@
 #include <vector>
 
 const int MOVER_COUNT = 350;
+const int MESH_COUNT = 200;
 
 class ofApp : public ofBaseApp{
 
 private:
+  unsigned int _meshIndex = 0;
   Mover* _movers[MOVER_COUNT];
-  std::vector<ofMesh*> _meshes;
+  ofMesh* _meshes[MESH_COUNT];
 
 	public:
 		void setup();

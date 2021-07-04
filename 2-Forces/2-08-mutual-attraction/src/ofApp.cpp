@@ -8,15 +8,14 @@ void ofApp::setup(){
   ofEnableAlphaBlending();
   ofSetFrameRate(60);
   for (unsigned int i=0; i < MOVER_COUNT; i++) {
-    this->_movers[i] = new Mover(ofRandom(0.1, 2.0),
-                                 ofRandom(0, ofGetWidth()),
-                                 ofRandom(0, ofGetHeight()));
+    this->_movers[i] = new Mover(ofRandom(0.1, 0.9),
+                                 ofRandom(ofGetWidth() / 2.0 - 500.0, ofGetWidth() / 2.0 + 500),
+                                 ofRandom(ofGetHeight() / 2.0 - 500.0, ofGetHeight() / 2.0 + 500));
   }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  this->_meshes.clear();
   for (auto moverA : this->_movers) {
     for(auto moverB : this->_movers) {
       if (moverA != moverB) {
@@ -25,16 +24,19 @@ void ofApp::update(){
       }
       glm::vec2 fromTo = moverA->getPosition() - moverB->getPosition();
       float distance = glm::length(fromTo);
-      if (distance <= 37) {
-        ofMesh* mesh = new ofMesh();
-        mesh->setMode(OF_PRIMITIVE_LINES);
-        mesh->addVertex(ofPoint(moverA->getPosition().x,
+      if (distance <= 50) {
+          if (this->_meshes[this->_meshIndex] == nullptr) {
+              this->_meshes[this->_meshIndex] = new ofMesh();
+          }
+          this->_meshes[this->_meshIndex]->clear();
+          this->_meshes[this->_meshIndex]->setMode(OF_PRIMITIVE_LINES);
+          this->_meshes[this->_meshIndex]->addVertex(ofPoint(moverA->getPosition().x,
                                 moverA->getPosition().y));
-        mesh->addColor(moverA->getColor());
-        mesh->addVertex(ofPoint(moverB->getPosition().x,
+          this->_meshes[this->_meshIndex]->addColor(moverA->getColor());
+          this->_meshes[this->_meshIndex]->addVertex(ofPoint(moverB->getPosition().x,
                                             moverB->getPosition().y));
-        mesh->addColor(moverB->getColor());
-        this->_meshes.push_back(mesh);
+          this->_meshes[this->_meshIndex]->addColor(moverB->getColor());
+          this->_meshIndex = (this->_meshIndex + 1) % MESH_COUNT;
       }
     }
     moverA->update();
@@ -44,13 +46,15 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  ofSetColor(20, 20, 20, 240);
+  ofSetColor(0, 0, 0, 150);
   ofRect(0, 0, ofGetWidth(), ofGetHeight());
   for (auto moverA : this->_movers) {
     moverA->display();
   }
   for (auto mesh : this->_meshes) {
-    mesh->draw();
+      if (mesh != nullptr) {
+          mesh->draw();
+      }
   }
 }
 
